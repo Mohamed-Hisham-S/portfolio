@@ -282,11 +282,37 @@
             font-weight: 900;
             color: var(--text-dark);
         }
+
+        /* --- Modal Close Button --- */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2100;
+            transition: 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: var(--accent-orange);
+        }
+        
+        /* Ensure the modal content is positioned relatively for the button */
+        .modal {
+            position: fixed;
+            display: none;
+            flex-direction: column; /* Stack button and image if needed */
+        }
     </style>
 </head>
 <body>
 
-    <div id="certModal" class="modal" onclick="this.style.display='none'">
+    <div id="certModal" class="modal">
+        <span class="close-btn" onclick="document.getElementById('certModal').style.display='none'">&times;</span>
+        
         <img class="modal-img" id="modalImg" alt="Certificate View">
     </div>
 
@@ -555,6 +581,14 @@
             img.src = src;
             modal.style.display = 'flex';
         }
+        
+        // Optional: Close modal when clicking anywhere outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('certModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
     <script>
   var form = document.getElementById("my-form");
@@ -590,6 +624,7 @@
 </script>
 </body>
 </html>
+
 
 
 
